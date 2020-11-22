@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
 
 namespace EgBlazorComponents.Table
 {
@@ -22,9 +21,11 @@ namespace EgBlazorComponents.Table
 
 		[Parameter] public int Total { get; set; }
 
-		public List<EgColumnBase> Columns { get; set; } = new();
+		private List<EgColumnBase> columns = new();
 
-		public int CurrentPage { get; set; } = 1;
+		private int currentPage = 1;
+
+		private string filter = null;
 
 		public int TotalPages
 		{
@@ -40,9 +41,18 @@ namespace EgBlazorComponents.Table
 		}
 
 		public void AddColumn(EgColumnBase column) =>
-			Columns.Add(column);
+			columns.Add(column);
 
-		private string filter = null;
+		public async Task SearchAsync(string value)
+		{
+			if (OnRead.HasDelegate)
+			{
+				currentPage = 1;
+				filter = value;
+				await OnRead.InvokeAsync(new TableReadEventArgs(currentPage, PageSize, filter));
+				StateHasChanged();
+			}
+		}
 
 		protected override void OnAfterRender(bool firstRender)
 		{
@@ -56,23 +66,12 @@ namespace EgBlazorComponents.Table
 				await commandButton.OnClick.InvokeAsync(new TableCommandButtonArgs(commandButton, data));
 		}
 
-		public async Task SearchAsync(string value)
-		{
-			if (OnRead.HasDelegate)
-			{
-				CurrentPage = 1;
-				filter = value;
-				await OnRead.InvokeAsync(new TableReadEventArgs(CurrentPage, PageSize, filter));
-				StateHasChanged();
-			}
-		}
-
 		private async Task OnPaginationButtonClickAsync(int page)
 		{
 			if (OnRead.HasDelegate)
 			{
-				CurrentPage = page;
-				await OnRead.InvokeAsync(new TableReadEventArgs(CurrentPage, PageSize, filter));
+				currentPage = page;
+				await OnRead.InvokeAsync(new TableReadEventArgs(currentPage, PageSize, filter));
 				StateHasChanged();
 			}
 		}

@@ -10,33 +10,35 @@
 
 @if (Searchable)
 {
-	<CascadingValue Value="this">
-		<EgSearch />
-	</CascadingValue>
+	<div class="mb-2">
+		<CascadingValue Value="this">
+			<EgSearch />
+		</CascadingValue>
+	</div>
 }
 
 @if (DataContext == null)
 {
 	<p><em>Loading data ...</em></p>
 }
-else if(DataContext.Count() == 0)
+else if (DataContext.Count() == 0)
 {
 	<p><em>No records</em></p>
 }
 else
 {
-	<table>
+	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				@foreach (var column in Columns)
+				@foreach (var column in columns)
 				{
 					@if (column is EgColumn egColumn)
 					{
-						<th>@(egColumn.Title ?? egColumn.Field)</th>
+						<th scope="col">@(egColumn.Title ?? egColumn.Field)</th>
 					}
 					else
 					{
-						<th>@column.Title</th>
+						<th scope="col">@column.Title</th>
 					}
 				}
 			</tr>
@@ -45,7 +47,7 @@ else
 			@foreach (var data in DataContext)
 			{
 				<tr>
-					@foreach (var column in Columns)
+					@foreach (var column in columns)
 					{
 						@if (column is EgColumn egColumn)
 						{
@@ -69,7 +71,7 @@ else
 										var capturedButton = commandButton;
 										var capturedData = data;
 
-										<button type="button" class="btn btn-secondary" disabled="@commandButton.Disabled"
+										<button type="button" class="btn btn-secondary btn-sm" disabled="@commandButton.Disabled"
 											@onclick="(() => OnCommandButtonClickAsync(capturedButton, capturedData))">@commandButton.Caption</button>
 									}
 								</div>
@@ -78,12 +80,11 @@ else
 					}
 				</tr>
 			}
-
 		</tbody>
 	</table>
 }
 
 @if (Pageable)
 {
-	<EgPagination CurrentPage="@CurrentPage" TotalPages="@TotalPages" PaginationSize="10" OnClick="((page) => OnPaginationButtonClickAsync(page))"/>
+	<EgPagination CurrentPage="@currentPage" TotalPages="@TotalPages" PaginationSize="10" OnClick="((page) => OnPaginationButtonClickAsync(page))"/>
 }

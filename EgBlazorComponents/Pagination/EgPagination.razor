@@ -3,7 +3,7 @@
 
 <nav>
 	<ul class="pagination">
-		@if (IsPreviousButtonEnabled)
+		@if (isPreviousButtonEnabled)
 		{
 			<li class="page-item disabled">
 				<a class="page-link">&laquo;</a>
@@ -12,14 +12,14 @@
 		else
 		{
 			<li class="page-item">
-				<a class="page-link" href="#" @onclick="(() => OnPageButtonClickAsync(GetStartPage(--CurrentPaginationIndex)))" @onclick:preventDefault>&laquo;</a>
+				<a class="page-link" href="#" @onclick="(() => OnPageButtonClickAsync(GetStartPage(--currentPaginationIndex)))" @onclick:preventDefault>&laquo;</a>
 			</li>
 		}
 
 		@{ 
-			for (var i = StartPage; i <= EndPage; i++)
+			for (var i = 0; i < numOfPages; i++)
 			{
-				var pageIndex = i;
+				var pageIndex = startPage + i;
 
 				if (CurrentPage == pageIndex)
 				{
@@ -36,7 +36,7 @@
 			}
 		}
 
-		@if (IsNextButtonEnabled)
+		@if (isNextButtonEnabled)
 		{
 			<li class="page-item disabled">
 				<a class="page-link">&raquo;</a>
@@ -45,7 +45,7 @@
 		else
 		{
 			<li class="page-item">
-				<a class="page-link" href="#" @onclick="(() => OnPageButtonClickAsync(GetStartPage(++CurrentPaginationIndex)))" @onclick:preventDefault>&raquo;</a>
+				<a class="page-link" href="#" @onclick="(() => OnPageButtonClickAsync(GetStartPage(++currentPaginationIndex)))" @onclick:preventDefault>&raquo;</a>
 			</li>
 		}
 	</ul>

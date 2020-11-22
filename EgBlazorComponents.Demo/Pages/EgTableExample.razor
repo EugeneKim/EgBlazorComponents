@@ -11,15 +11,23 @@
 		 Searchable="true" 
 		 Pageable="true" Total="@TotalWords" PageSize="@PageSize"
 		 OnRead="@OnReadAsync">
-	<EgColumn Field="Priority" />
-	<EgColumn Field="Word">
+	<EgColumn Field="Priority">
 		<Template>
 			@{
-				var model = (context as WordModel);
-				<div class="alert-info">@model.Word</div>
+				var priority = (context as WordModel).Priority;
+
+				@if (priority == "High")
+				{
+					<div class="text-warning">@priority</div>
+				}
+				else
+				{
+					<div class="text-success">@priority</div>
+				}
 			}
 		</Template>
 	</EgColumn>
+	<EgColumn Field="Word" />
 	<EgCommandColumn Title="Action">
 		<EgCommandButton Caption="Delete" OnClick="OnDeleteCommandButtonClickAsync" />
 		<EgCommandButton Caption="Edit" OnClick="OnEditCommandButtonClickAsync" />

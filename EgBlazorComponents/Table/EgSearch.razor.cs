@@ -6,13 +6,13 @@ namespace EgBlazorComponents.Table
 {
 	public partial class EgSearch : EgComponentBase
 	{
-		private string SearchValue { get; set; }
-
 		[CascadingParameter]
 		public EgTable Table { get; set; }
 
 		[Parameter]
 		public EventCallback<int> OnSearch { get; set; }
+
+		private string searchValue;
 
 		private async Task OnSearchButtonClickAsync() =>
 			await Search();
@@ -25,11 +25,11 @@ namespace EgBlazorComponents.Table
 
 		private async Task OnClearButtonClickAsync()
 		{
-			SearchValue = string.Empty;
+			searchValue = string.Empty;
 			await Search();
 		}
 
 		private async Task Search() =>
-			await Table.SearchAsync(SearchValue);
+			await Table.SearchAsync(searchValue);
 	}
 }

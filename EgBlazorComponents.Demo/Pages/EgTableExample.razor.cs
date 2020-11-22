@@ -9,17 +9,10 @@ namespace EgBlazorComponents.Demo.Pages
 {
 	public partial class EgTableExample : ComponentBase
 	{
-		[Inject]
-		private WordsCollectionService WordCollectionService { get; set; }
+		[Inject] private WordsCollectionService WordCollectionService { get; set; }
 
-		/// <summary>
-		/// A collection of filtered words for a page.
-		/// </summary>
 		public IReadOnlyList<WordModel> WordData { get; set; }
 
-		/// <summary>
-		/// Total number of filtered words.
-		/// </summary>
 		private int TotalWords { get; set; }
 
 		public string Message { get; set; }

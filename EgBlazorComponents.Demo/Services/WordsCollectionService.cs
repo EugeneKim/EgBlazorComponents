@@ -30,7 +30,7 @@ namespace EgBlazorComponents.Demo.Services
 			var numOfAdjectives = adjectives.Length;
 			var numOfNouns = nouns.Length;
 
-			var numOfItems = 100;
+			var numOfItems = 210;
 			var i = 0;
 
 			words = new List<WordModel>(numOfItems);

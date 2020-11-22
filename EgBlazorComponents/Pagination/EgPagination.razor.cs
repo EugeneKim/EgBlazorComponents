@@ -6,40 +6,33 @@ namespace EgBlazorComponents.Pagination
 {
 	public partial class EgPagination : EgComponentBase
 	{
-		#region Parameter Properties
+		[Parameter] public int TotalPages { get; set; }
 
-		[Parameter]
-		public int TotalPages { get; set; }
+		[Parameter] public int CurrentPage { get; set; }
 
-		[Parameter]
-		public int CurrentPage { get; set; }
+		[Parameter] public int PaginationSize { get; set; } = 10;
 
-		[Parameter]
-		public int PaginationSize { get; set; } = 10;
+		[Parameter] public EventCallback<int> OnClick { get; set; }
 
-		[Parameter]
-		public EventCallback<int> OnClick { get; set; }
+		private int currentPaginationIndex;
 
-		#endregion Parameter Properties
+		private bool isPreviousButtonEnabled;
 
-		private int CurrentPaginationIndex { get; set; }
+		private bool isNextButtonEnabled;
 
-		private bool IsPreviousButtonEnabled { get; set; }
+		private int startPage;
 
-		private bool IsNextButtonEnabled { get; set; }
-		private int StartPage { get; set; }
-
-		private int EndPage { get; set; }
+		private int numOfPages;
 
 		protected override void OnParametersSet()
 		{
-			CurrentPaginationIndex = (CurrentPage - 1) / PaginationSize;
+			currentPaginationIndex = (CurrentPage - 1) / PaginationSize;
 
-			IsPreviousButtonEnabled = CurrentPaginationIndex < 1;
-			IsNextButtonEnabled = GetStartPage(CurrentPaginationIndex + 1) > TotalPages;
+			isPreviousButtonEnabled = currentPaginationIndex < 1;
+			isNextButtonEnabled = GetStartPage(currentPaginationIndex + 1) > TotalPages;
 
-			StartPage = GetStartPage(CurrentPaginationIndex);
-			EndPage = StartPage + Math.Min(PaginationSize, TotalPages - StartPage);
+			startPage = GetStartPage(currentPaginationIndex);
+			numOfPages = Math.Min(PaginationSize, TotalPages - startPage + 1);
 		}
 
 		private async Task OnPageButtonClickAsync(int page)
@@ -48,6 +41,7 @@ namespace EgBlazorComponents.Pagination
 				await OnClick.InvokeAsync(page);
 		}
 
-		private int GetStartPage(int paginationIndex) => PaginationSize * paginationIndex + 1;
+		private int GetStartPage(int paginationIndex) =>
+			PaginationSize * paginationIndex + 1;
 	}
 }

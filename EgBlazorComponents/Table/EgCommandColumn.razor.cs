@@ -4,9 +4,8 @@ using System.Collections.Generic;
 namespace EgBlazorComponents.Table
 {
 	public partial class EgCommandColumn : EgColumnBase
-    {
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
+	{
+		[Parameter] public RenderFragment ChildContent { get; set; }
 
 		public List<EgCommandButton> CommandButtons { get; set; } = new();
 
