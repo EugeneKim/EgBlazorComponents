@@ -1,0 +1,9 @@
+﻿@inherits EgComponentBase
+
+<div class="input-group">
+	<button type="button" @onclick="OnSearchButtonClickAsync">Search</button>
+	<input type="text" class="form-control grid-search-input" 
+		   placeholder="Search ..."
+		   @bind-value="SearchValue" @onkeyup="OnKeyUpAsync" @onclick:stopPropagation="true" />
+	<button type="button" @onclick="OnClearButtonClickAsync">Clear</button>
+</div>

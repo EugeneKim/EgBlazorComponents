@@ -1,0 +1,28 @@
+﻿@using EgBlazorComponents.Demo.Models
+@page "/EgTableExample"
+
+<h3>Table</h3>
+
+<div>
+	Message: @Message
+</div>
+
+<EgTable DataContext="@WordData"
+		 Searchable="true" 
+		 Pageable="true" Total="@TotalWords" PageSize="@PageSize"
+		 OnRead="@OnReadAsync">
+	<EgColumn Field="Priority" />
+	<EgColumn Field="Word">
+		<Template>
+			@{
+				var model = (context as WordModel);
+				<div class="alert-info">@model.Word</div>
+			}
+		</Template>
+	</EgColumn>
+	<EgCommandColumn Title="Action">
+		<EgCommandButton Caption="Delete" OnClick="OnDeleteCommandButtonClickAsync" />
+		<EgCommandButton Caption="Edit" OnClick="OnEditCommandButtonClickAsync" />
+		<EgCommandButton Caption="Disabled" />
+	</EgCommandColumn>
+</EgTable>

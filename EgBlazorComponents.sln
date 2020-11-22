@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EgBlazorComponents", "EgBlazorComponents\EgBlazorComponents.csproj", "{383021F0-B077-480F-8BBC-AB1684112ACB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EgBlazorComponents.Demo", "EgBlazorComponents.Demo\EgBlazorComponents.Demo.csproj", "{2ADF1B65-15ED-45A1-B078-4B70CF0012A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{383021F0-B077-480F-8BBC-AB1684112ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{383021F0-B077-480F-8BBC-AB1684112ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{383021F0-B077-480F-8BBC-AB1684112ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{383021F0-B077-480F-8BBC-AB1684112ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ADF1B65-15ED-45A1-B078-4B70CF0012A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ADF1B65-15ED-45A1-B078-4B70CF0012A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ADF1B65-15ED-45A1-B078-4B70CF0012A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ADF1B65-15ED-45A1-B078-4B70CF0012A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {582715D8-9EC6-4C1F-80CE-283A977863A2}
+	EndGlobalSection
+EndGlobal

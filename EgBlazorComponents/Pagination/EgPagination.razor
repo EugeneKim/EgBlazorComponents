@@ -1,0 +1,52 @@
+﻿@using EgBlazorComponents
+@inherits EgComponentBase
+
+<nav>
+	<ul class="pagination">
+		@if (IsPreviousButtonEnabled)
+		{
+			<li class="page-item disabled">
+				<a class="page-link">&laquo;</a>
+			</li>
+		}
+		else
+		{
+			<li class="page-item">
+				<a class="page-link" href="#" @onclick="(() => OnPageButtonClickAsync(GetStartPage(--CurrentPaginationIndex)))" @onclick:preventDefault>&laquo;</a>
+			</li>
+		}
+
+		@{ 
+			for (var i = StartPage; i <= EndPage; i++)
+			{
+				var pageIndex = i;
+
+				if (CurrentPage == pageIndex)
+				{
+					<li class="page-item active">
+						<a class="page-link">@pageIndex</a>
+					</li>
+				}
+				else
+				{
+					<li class="page-item">
+						<a class="page-link" href="#" @onclick="(() => OnPageButtonClickAsync(pageIndex))" @onclick:preventDefault>@pageIndex</a>
+					</li>
+				}
+			}
+		}
+
+		@if (IsNextButtonEnabled)
+		{
+			<li class="page-item disabled">
+				<a class="page-link">&raquo;</a>
+			</li>
+		}
+		else
+		{
+			<li class="page-item">
+				<a class="page-link" href="#" @onclick="(() => OnPageButtonClickAsync(GetStartPage(++CurrentPaginationIndex)))" @onclick:preventDefault>&raquo;</a>
+			</li>
+		}
+	</ul>
+</nav>

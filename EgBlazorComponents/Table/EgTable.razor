@@ -1,0 +1,89 @@
+﻿@using EgBlazorComponents
+@using EgBlazorComponents.Table
+@using EgBlazorComponents.Pagination
+
+@inherits EgComponentBase
+
+<CascadingValue Value="this">
+	@ChildContent
+</CascadingValue>
+
+@if (Searchable)
+{
+	<CascadingValue Value="this">
+		<EgSearch />
+	</CascadingValue>
+}
+
+@if (DataContext == null)
+{
+	<p><em>Loading data ...</em></p>
+}
+else if(DataContext.Count() == 0)
+{
+	<p><em>No records</em></p>
+}
+else
+{
+	<table>
+		<thead>
+			<tr>
+				@foreach (var column in Columns)
+				{
+					@if (column is EgColumn egColumn)
+					{
+						<th>@(egColumn.Title ?? egColumn.Field)</th>
+					}
+					else
+					{
+						<th>@column.Title</th>
+					}
+				}
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var data in DataContext)
+			{
+				<tr>
+					@foreach (var column in Columns)
+					{
+						@if (column is EgColumn egColumn)
+						{
+							if (egColumn.Template == null)
+							{
+								<td>@data.GetType().GetProperty(egColumn.Field).GetValue(data)</td>
+							}
+							else
+							{
+								<td>@egColumn.Template(data)</td>
+							}
+						}
+						else if (column is EgCommandColumn egCommandColumn)
+						{
+							var commandButtons = egCommandColumn.CommandButtons;
+
+							<td>
+								<div class="btn-group" role="group">
+									@foreach (var commandButton in commandButtons)
+									{
+										var capturedButton = commandButton;
+										var capturedData = data;
+
+										<button type="button" class="btn btn-secondary" disabled="@commandButton.Disabled"
+											@onclick="(() => OnCommandButtonClickAsync(capturedButton, capturedData))">@commandButton.Caption</button>
+									}
+								</div>
+							</td>
+						}
+					}
+				</tr>
+			}
+
+		</tbody>
+	</table>
+}
+
+@if (Pageable)
+{
+	<EgPagination CurrentPage="@CurrentPage" TotalPages="@TotalPages" PaginationSize="10" OnClick="((page) => OnPaginationButtonClickAsync(page))"/>
+}
