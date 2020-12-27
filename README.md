@@ -7,14 +7,17 @@ Some Blazor components.
 - [Visual Studio 2019 v16.8.2](https://visualstudio.microsoft.com/vs/)
 - [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
 
-#### Table Component
+#### Table
 The features of this component I wanted to focus on were:
 - not using HTML tags unless you use the customised template
 - auto detecting the properties of the data context bound to
 - loading data only for current page
 
-#### Pagination Component
+#### Pagination
 - Normal pagination component
+
+#### Spinner
+- Loading indicator with spinning animation
 
 ### Note
 This repository is intended to share the implementation when you need to implement similar components for your projects.
