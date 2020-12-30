@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <PackageId>EgBlazorComponents_alpha</PackageId>
-    <Version>0.0.1</Version>
+    <PackageId>EgBlazorComponents</PackageId>
+    <Version>0.0.1-alpha</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Eugene Kim</Authors>
     <Company>Eugene Kim</Company>
@@ -14,6 +14,13 @@
     <PackageIcon>EgBlazorComponents.png</PackageIcon>
     <PackageTags>EgBlazorComponents Blazor Components</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Description>A collection of Blazor components.
+This package is intended for educational purposes for my colleagues who are new to Blazor world. Therefore, I tried not to reuse or wrap any dependencies. Feel free to download and modify the package source from GitHub for the projects for you or your team.
+</Description>
+    <PackageReleaseNotes>EgTable for partial loading items from a server.
+EgSearch to filter the table items.
+EgPagination for the table pagination.
+EgSpinner to show the loading indicator for a long running process.</PackageReleaseNotes>
   </PropertyGroup>
 
   
