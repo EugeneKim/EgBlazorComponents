@@ -1,0 +1,11 @@
+﻿@page "/InputSet"
+@using EgBlazorComponents.Form
+@using EgBlazorComponents.Demo.Models
+
+<EditForm Model="@WordModel">
+	<EgInputSelectEnum @bind-Value="WordModel.Priority" class="custom-select" />
+</EditForm>
+
+@code {
+	public WordModel WordModel { get; set; } = new WordModel(Priority.High, "school");
+}

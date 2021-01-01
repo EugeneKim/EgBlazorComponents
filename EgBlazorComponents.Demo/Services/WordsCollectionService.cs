@@ -39,7 +39,7 @@ namespace EgBlazorComponents.Demo.Services
 			{
 				for (var l2 = 0; l2 < numOfNouns; l2++)
 				{
-					words.Add(new WordModel(random.Next(0, 2) == 0 ? "Normal" : "High", $"{adjectives[l1]} {nouns[l2]}"));
+					words.Add(new WordModel(random.Next(0, 2) == 0 ? Priority.High : Priority.Low, $"{adjectives[l1]} {nouns[l2]}"));
 
 					if (++i == numOfItems)
 						return;
@@ -66,7 +66,7 @@ namespace EgBlazorComponents.Demo.Services
 		private IEnumerable<WordModel> GetFilteredWords(string filter) =>
 			string.IsNullOrEmpty(filter) 
 				? words
-				: words.Where(w => w.Priority.Contains(filter, StringComparison.OrdinalIgnoreCase) || w.Word.Contains(filter, StringComparison.OrdinalIgnoreCase));
+				: words.Where(w => w.Word.Contains(filter, StringComparison.OrdinalIgnoreCase));
 
 		private static void Shuffle(string[] array, Random random)
 		{

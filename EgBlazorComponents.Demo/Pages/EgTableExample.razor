@@ -1,8 +1,6 @@
 ﻿@using EgBlazorComponents.Demo.Models
 @page "/Table"
 
-<h3>Table</h3>
-
 <div>
 	Message: @Message
 </div>
@@ -16,7 +14,7 @@
 			@{
 				var priority = (context as WordModel).Priority;
 
-				@if (priority == "High")
+				@if (priority == Priority.High)
 				{
 					<div class="text-warning">@priority</div>
 				}

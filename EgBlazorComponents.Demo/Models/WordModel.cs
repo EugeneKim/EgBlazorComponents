@@ -4,10 +4,10 @@ namespace EgBlazorComponents.Demo.Models
 {
 	public class WordModel : IEquatable<WordModel>
 	{
-		public string Priority { get; }
-		public string Word { get; }
+		public Priority Priority { get; set; }
+		public string Word { get; set; }
 
-		public WordModel(string priority, string word) => (Priority, Word) = (priority, word);
+		public WordModel(Priority priority, string word) => (Priority, Word) = (priority, word);
 
 		public override string ToString() => $"Priority: {Priority}, Word = {Word}";
 
