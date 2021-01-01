@@ -1,13 +1,19 @@
-﻿using Microsoft.AspNetCore.Components.Rendering;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace EgBlazorComponents.Spinner
 {
+	/// <summary>
+	/// Spinner component.
+	/// </summary>
 	public partial class EgSpinner : EgComponentBase
 	{
+		#region Fields
+
 		private bool showSpinner;
 		private bool disposed;
+
+		#endregion
 
 		/// <summary>
 		/// Show the spinner.

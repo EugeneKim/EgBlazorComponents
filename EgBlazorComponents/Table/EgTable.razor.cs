@@ -7,25 +7,23 @@ namespace EgBlazorComponents.Table
 {
 	public partial class EgTable : EgComponentBase
 	{
-		[Parameter] public EventCallback<TableReadEventArgs> OnRead { get; set; }
-
-		[Parameter] public RenderFragment ChildContent { get; set; }
-
-		[Parameter] public IReadOnlyList<object> DataContext { get; set; }
-
-		[Parameter] public bool Searchable { get; set; }
-
-		[Parameter] public bool Pageable { get; set; }
-
-		[Parameter] public int PageSize { get; set; }
-
-		[Parameter] public int Total { get; set; }
+		#region Fields
 
 		private List<EgColumnBase> columns = new();
-
 		private int currentPage = 1;
-
 		private string filter = null;
+
+		#endregion Fields
+
+		#region Properties
+
+		[Parameter] public EventCallback<TableReadEventArgs> OnRead { get; set; }
+		[Parameter] public RenderFragment ChildContent { get; set; }
+		[Parameter] public IReadOnlyList<object> DataContext { get; set; }
+		[Parameter] public bool Searchable { get; set; }
+		[Parameter] public bool Pageable { get; set; }
+		[Parameter] public int PageSize { get; set; }
+		[Parameter] public int Total { get; set; }
 
 		public int TotalPages
 		{
@@ -40,8 +38,11 @@ namespace EgBlazorComponents.Table
 			}
 		}
 
-		public void AddColumn(EgColumnBase column) =>
-			columns.Add(column);
+		#endregion Properties
+
+		#region Public Methods
+
+		public void AddColumn(EgColumnBase column) => columns.Add(column);
 
 		public async Task SearchAsync(string value)
 		{
@@ -54,11 +55,19 @@ namespace EgBlazorComponents.Table
 			}
 		}
 
+		#endregion Public Methods
+
+		#region Override Methods
+
 		protected override void OnAfterRender(bool firstRender)
 		{
 			if (firstRender)
 				StateHasChanged();
 		}
+
+		#endregion Override Methods
+
+		#region Private Methods
 
 		private async Task OnCommandButtonClickAsync(EgCommandButton commandButton, object data)
 		{
@@ -75,5 +84,7 @@ namespace EgBlazorComponents.Table
 				StateHasChanged();
 			}
 		}
+
+		#endregion Private Methods
 	}
 }

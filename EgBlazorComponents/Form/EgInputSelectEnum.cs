@@ -12,6 +12,8 @@ namespace EgBlazorComponents.Form
 	/// <typeparam name="TEnum">Type parameter of <see cref="Enum"/>.</typeparam>
 	public sealed class EgInputSelectEnum<TEnum> : InputBase<TEnum>
 	{
+		#region Override Methods
+
 		protected override void BuildRenderTree(RenderTreeBuilder builder)
 		{
 			builder.OpenElement(0, "select");
@@ -50,6 +52,12 @@ namespace EgBlazorComponents.Form
 			return false;
 		}
 
+		#endregion Override Methods
+
+		#region Private Methods
+
 		private static Type GetUnderlyingEnumType() => Nullable.GetUnderlyingType(typeof(TEnum)) ?? typeof(TEnum);
+
+		#endregion Private Methods
 	}
 }

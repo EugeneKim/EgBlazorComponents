@@ -6,16 +6,22 @@ namespace EgBlazorComponents.Table
 {
 	public partial class EgSearch : EgComponentBase
 	{
-		[CascadingParameter]
-		public EgTable Table { get; set; }
+		#region Properties
 
-		[Parameter]
-		public EventCallback<int> OnSearch { get; set; }
+		[CascadingParameter] public EgTable Table { get; set; }
+		[Parameter] public EventCallback<int> OnSearch { get; set; }
+
+		#endregion Properties
+
+		#region Fields
 
 		private string searchValue;
 
-		private async Task OnSearchButtonClickAsync() =>
-			await Search();
+		#endregion Fields
+
+		#region Private Methods
+
+		private async Task OnSearchButtonClickAsync() => await Search();
 
 		private async Task OnKeyUpAsync(KeyboardEventArgs e)
 		{
@@ -29,7 +35,8 @@ namespace EgBlazorComponents.Table
 			await Search();
 		}
 
-		private async Task Search() =>
-			await Table.SearchAsync(searchValue);
+		private async Task Search() => await Table.SearchAsync(searchValue);
+
+		#endregion Private Methods
 	}
 }
