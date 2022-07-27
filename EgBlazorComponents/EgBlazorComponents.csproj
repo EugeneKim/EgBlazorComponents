@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PackageId>EgBlazorComponents</PackageId>
-    <Version>0.0.2-alpha</Version>
+    <Version>0.0.3-alpha</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Eugene Kim</Authors>
     <Company>Eugene Kim</Company>
-    <Copyright>Copyright 2020 Eugene Kim</Copyright>
+    <Copyright>Copyright 2022 Eugene Kim</Copyright>
     <PackageProjectUrl>https://github.com/EugeneKim/EgBlazorComponents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/EugeneKim/EgBlazorComponents</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -23,13 +23,12 @@ The demo project included in the package source demonstrates how to use the comp
     <PackageReleaseNotes>Added the EgInputSetEnum component.</PackageReleaseNotes>
   </PropertyGroup>
 
-  
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
