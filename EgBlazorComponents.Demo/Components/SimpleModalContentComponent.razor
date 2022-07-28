@@ -1,0 +1,12 @@
+﻿@using EgBlazorComponents.Demo.Models
+@typeparam TItem where TItem : SimpleModalContent
+
+<div>
+	<p><strong>Position:</strong> @ModalArgs.Data.Position</p>
+	<p><strong>Name:</strong> @ModalArgs.Data.Name</p>
+</div>
+
+
+@code {
+	[CascadingParameter] private ModalArgs<TItem> ModalArgs { get; set; }
+}

@@ -1,0 +1,22 @@
+﻿@using EgBlazorComponents.Demo.Models
+@typeparam TItem where TItem : EditFormModalContent
+
+<EditForm Model="@ModalArgs.Data" OnValidSubmit="@OnValidSubmit">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+
+	<InputText id="position" @bind-Value="ModalArgs.Data.Position" />
+	<InputText id="name" @bind-Value="ModalArgs.Data.Name" />
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+	[CascadingParameter] private ModalArgs<TItem> ModalArgs { get; set; }
+	[CascadingParameter] private EventCallback<ModalResult> OnCloseRequested { get; set; }
+
+	private void OnValidSubmit()
+	{
+		OnCloseRequested.InvokeAsync(ModalResult.Ok);
+	}
+}

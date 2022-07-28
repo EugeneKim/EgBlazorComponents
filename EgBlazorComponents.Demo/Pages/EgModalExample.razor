@@ -1,0 +1,47 @@
+﻿@using EgBlazorComponents.Demo.Models
+@using EgBlazorComponents.Demo.Components
+@page "/Modal"
+
+<EgModal @ref=simpleModal ModalArgs="@simpleModalContent" TItem="SimpleModalContent" />
+
+<button @onclick="ShowSimpleModalAsync" class="btn btn-primary">Show Modal</button>
+
+<EgModal @ref=editFormModal ModalArgs="@editFormModalContent" TItem="EditFormModalContent" />
+
+<button @onclick="ShowEditFormModalAsync" class="btn btn-primary">Show Edit Form Modal</button>
+
+@code {
+
+	private ModalArgs<SimpleModalContent> simpleModalContent;
+	private ModalArgs<EditFormModalContent> editFormModalContent;
+	private EgModal<SimpleModalContent> simpleModal;
+	private EgModal<EditFormModalContent> editFormModal;
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+
+		simpleModalContent = new ModalArgs<SimpleModalContent>(ModalButtons.Ok, new SimpleModalContent
+			{
+				Position = "Senior Developer",
+				Name = "Eugene Kim"
+			});
+
+		editFormModalContent = new ModalArgs<EditFormModalContent>(new EditFormModalContent
+			{
+				Position = "Senior Developer",
+				Name = "Eugene Kim"
+			});
+
+	}
+
+	private async Task ShowSimpleModalAsync()
+	{
+		var modalResult = await simpleModal.ShowAsync<SimpleModalContentComponent<SimpleModalContent>>( "Simple Modal Example", simpleModalContent);
+	}
+
+	private async Task ShowEditFormModalAsync()
+	{
+		var modalResult = await editFormModal.ShowAsync<EditFormModalContentComponent<EditFormModalContent>>( "Edit Form Modal Example", editFormModalContent);
+	}
+}
