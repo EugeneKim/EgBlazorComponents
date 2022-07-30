@@ -1,17 +1,13 @@
-[![Build Status](https://travis-ci.com/EugeneKim/EgBlazorComponents.svg?branch=main)](https://travis-ci.com/EugeneKim/EgBlazorComponents)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # EgBlazorComponents
 
 A collection of Blazor custom components.
-This package is intended for educational purposes for my colleagues who are new to Blazor world.
-Therefore, I tried to NOT reuse or wrap any 3rd party dependencies.
-And I also tried to make the implementation simple as possible as I can.
-Feel free to download and modify the package source from GitHub for the projects for you or your team.
-The demo project included in the package source demonstrates how to use the components.
+I tried to implement them from the scrach and miminise using any 3rd party dependencies unless I have to, because this project is mainly for me to learn the Blazor.
+Copyleft licensed. Feel free to download and modify them for your own.
+The demo project is included to see how to use them.
 
 ### Build Environment
-https://docs.microsoft.com/en-us/aspnet/core/blazor/forms-validation
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 - [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
 
