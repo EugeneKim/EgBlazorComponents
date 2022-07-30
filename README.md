@@ -11,14 +11,16 @@ Feel free to download and modify the package source from GitHub for the projects
 The demo project included in the package source demonstrates how to use the components.
 
 ### Build Environment
+https://docs.microsoft.com/en-us/aspnet/core/blazor/forms-validation
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+- [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
 
-- [Visual Studio 2019 v16.8.2](https://visualstudio.microsoft.com/vs/)
-- [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
+#### Modal
+- Modal dialog\
+Please note that *I referred a lot to the parts [Blazored Modal](https://github.com/Blazored/Modal) is implemented for this component.*
 
-#### Table
-This component focuses on:
-- Auto detection the properties of the data context bound to.
-- Partial data load only for current page to avoid performance hit by large data.
+#### InputSetEnum
+- Extended the built-in InputSet to support *enum* type.
 
 #### Pagination
 - Normal pagination component.
@@ -26,13 +28,15 @@ This component focuses on:
 #### Spinner
 - Loading indicator with spinning animation.
 
-#### InputSetEnum
-- Extended the built-in InputSet to support *enum* type.
+#### Table
+This component focuses on:
+- Auto detection the properties of the data context bound to.
+- Partial data load only for current page to avoid performance hit by large data.
 
 ### Note
-There are nice/cool open-source Blazor components in GitHub.
-If you want an advanced level of Blazor, crack them open!
+There are nice/cool open-source Blazor components in GitHub. You may want to crack them open for your advanced level of Blazor.
 
 - [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor)
 - [Blazorise](https://github.com/stsrki/Blazorise)
+- [Blazored](https://github.com/Blazored)
 - [Grid.Blazor](https://github.com/gustavnavar/Grid.Blazor)

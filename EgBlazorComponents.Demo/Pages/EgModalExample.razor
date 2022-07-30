@@ -2,46 +2,82 @@
 @using EgBlazorComponents.Demo.Components
 @page "/Modal"
 
-<EgModal @ref=simpleModal ModalArgs="@simpleModalContent" TItem="SimpleModalContent" />
+<EgModal @ref=simpleModal ModalArgs="@simpleModalArgs" TItem="SimpleModalContent" />
+<div class="card">
+	<div class="card-header">
+		Simple Modal
+	</div>
+	<div class="card-body">
+		<button @onclick="ShowSimpleModalAsync" class="btn btn-primary button-modal">Show Modal</button>
 
-<button @onclick="ShowSimpleModalAsync" class="btn btn-primary">Show Modal</button>
+		@if (simpleModalResult != null)
+		{
+			<p><strong>ModalResult:</strong> @simpleModalResult</p>
+		}
+	</div>
+</div>
 
-<EgModal @ref=editFormModal ModalArgs="@editFormModalContent" TItem="EditFormModalContent" />
+<EgModal @ref=editFormModal ModalArgs="@editFormModalArgs" TItem="EditFormModalContent" />
+<div class="card">
+	<div class="card-header">
+		EditForm Modal
+	</div>
+	<div class="card-body">
+		<button @onclick="ShowEditFormModalAsync" class="btn btn-primary button-modal">Show Edit Form Modal</button>
 
-<button @onclick="ShowEditFormModalAsync" class="btn btn-primary">Show Edit Form Modal</button>
+		@if (editFormModalResult != null)
+		{
+			<p><strong>ModalResult:</strong> @editFormModalResult</p>
+			<div>
+				<p>@editFormModalContent.Identifier</p>
+				<p>@editFormModalContent.Description</p>
+				<p>@editFormModalContent.Classification</p>
+				<p>@editFormModalContent.MaximumAccommodation</p>
+				<p>@editFormModalContent.IsValidatedDesign</p>
+				<p>@editFormModalContent.ProductionDate</p>
+			</div>
+		}
+	</div>
+</div>
 
-@code {
-
-	private ModalArgs<SimpleModalContent> simpleModalContent;
-	private ModalArgs<EditFormModalContent> editFormModalContent;
+@code
+{
 	private EgModal<SimpleModalContent> simpleModal;
+	private ModalArgs<SimpleModalContent> simpleModalArgs;
+	private ModalResult? simpleModalResult;
+
 	private EgModal<EditFormModalContent> editFormModal;
+	private ModalArgs<EditFormModalContent> editFormModalArgs;
+	private EditFormModalContent editFormModalContent;
+	private ModalResult? editFormModalResult;
 
 	protected override void OnInitialized()
 	{
 		base.OnInitialized();
 
-		simpleModalContent = new ModalArgs<SimpleModalContent>(ModalButtons.Ok, new SimpleModalContent
+		simpleModalArgs = new ModalArgs<SimpleModalContent>(ModalButtons.Ok, new SimpleModalContent
 			{
-				Position = "Senior Developer",
-				Name = "Eugene Kim"
+				Position = "Software Developer (Meta Cortex)",
+				Name = "Thomas A. Anderson"
 			});
 
-		editFormModalContent = new ModalArgs<EditFormModalContent>(new EditFormModalContent
-			{
-				Position = "Senior Developer",
-				Name = "Eugene Kim"
-			});
-
+		editFormModalContent = new EditFormModalContent();
 	}
 
 	private async Task ShowSimpleModalAsync()
-	{
-		var modalResult = await simpleModal.ShowAsync<SimpleModalContentComponent<SimpleModalContent>>( "Simple Modal Example", simpleModalContent);
-	}
+		=> simpleModalResult= await simpleModal.ShowAsync<SimpleModalContentComponent<SimpleModalContent>>( "Simple Modal Example", simpleModalArgs);
 
 	private async Task ShowEditFormModalAsync()
 	{
-		var modalResult = await editFormModal.ShowAsync<EditFormModalContentComponent<EditFormModalContent>>( "Edit Form Modal Example", editFormModalContent);
+		// Pass a clone of the model object to the modal form, then update it with the update values in the clone returned from the form.
+
+		var tempFormModalContent = new EditFormModalContent();
+		tempFormModalContent.Update(editFormModalContent);
+
+		editFormModalArgs = new ModalArgs<EditFormModalContent>(tempFormModalContent);
+		editFormModalResult = await editFormModal.ShowAsync<EditFormModalContentComponent<EditFormModalContent>>( "Edit Form Modal Example", editFormModalArgs);
+
+		if (editFormModalResult == ModalResult.Ok)
+			editFormModalContent.Update(tempFormModalContent);
 	}
 }

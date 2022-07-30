@@ -1,22 +1,58 @@
 ﻿@using EgBlazorComponents.Demo.Models
 @typeparam TItem where TItem : EditFormModalContent
 
-<EditForm Model="@ModalArgs.Data" OnValidSubmit="@OnValidSubmit">
+<EditForm Model="@ModalArgs.Data" OnValidSubmit="@HandleValidSubmit">
 	<DataAnnotationsValidator />
-	<ValidationSummary />
 
-	<InputText id="position" @bind-Value="ModalArgs.Data.Position" />
-	<InputText id="name" @bind-Value="ModalArgs.Data.Name" />
-
+	<p>
+		<label>
+			Identifier:
+			<InputText @bind-Value="ModalArgs.Data.Identifier" />
+		</label>
+	</p>
+	<p>
+		<label>
+			Description (optional):
+			<InputTextArea @bind-Value="ModalArgs.Data.Description" />
+		</label>
+	</p>
+	<p>
+		<label>
+			Primary Classification:
+			<InputSelect @bind-Value="ModalArgs.Data.Classification">
+				<option value="">Select classification ...</option>
+				<option value="Exploration">Exploration</option>
+				<option value="Diplomacy">Diplomacy</option>
+				<option value="Defense">Defense</option>
+			</InputSelect>
+		</label>
+	</p>
+	<p>
+		<label>
+			Maximum Accommodation:
+			<InputNumber @bind-Value="ModalArgs.Data.MaximumAccommodation" />
+		</label>
+	</p>
+	<p>
+	    <label>
+	        Engineering Approval:
+	        <InputCheckbox @bind-Value="ModalArgs.Data.IsValidatedDesign" />
+	    </label>
+	</p>
+	<p>
+	    <label>
+	        Production Date:
+	        <InputDate @bind-Value="ModalArgs.Data.ProductionDate" />
+	    </label>
+	</p>
+	
 	<button type="submit" class="btn btn-primary">Submit</button>
+	<ValidationSummary />
 </EditForm>
 
 @code {
 	[CascadingParameter] private ModalArgs<TItem> ModalArgs { get; set; }
 	[CascadingParameter] private EventCallback<ModalResult> OnCloseRequested { get; set; }
 
-	private void OnValidSubmit()
-	{
-		OnCloseRequested.InvokeAsync(ModalResult.Ok);
-	}
+	private void HandleValidSubmit() => OnCloseRequested.InvokeAsync(ModalResult.Ok);
 }

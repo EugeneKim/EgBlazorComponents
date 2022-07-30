@@ -29,10 +29,10 @@
 	[Parameter] public ModalArgs<TItem> ModalArgs { get; set; }
 
 	private EventCallback<ModalResult> OnCloseRequested;
-	private bool isVisible = false;
+	private bool isVisible;
 	private string title;
 	private RenderFragment content = default!;
-	private RenderFragment? footer;
+	private RenderFragment footer;
 	private TaskCompletionSource<ModalResult> tcs;
 
 	public Task<ModalResult> ShowAsync<T>(string title, ModalArgs<TItem> args) where T: class
@@ -51,7 +51,7 @@
 				builder.OpenElement(0, "button");
 				builder.AddAttribute(1, "type", "button");
 				builder.AddAttribute(2, "class", "btn btn-primary");
-				builder.AddAttribute(3, "onclick", EventCallback.Factory.Create(this, _ => 
+				builder.AddAttribute(3, "onclick", EventCallback.Factory.Create(this, _ =>
 					OnCloseButtonClicked(args.ModalButtons is ModalButtons.Ok or ModalButtons.OkCancel ? ModalResult.Ok : ModalResult.Yes)));
 				builder.AddContent(4, args.ModalButtons is ModalButtons.Ok or ModalButtons.OkCancel ? "OK" : "Yes");
 				builder.CloseElement();
@@ -62,7 +62,7 @@
 				builder.OpenElement(5, "button");
 				builder.AddAttribute(6, "type", "button");
 				builder.AddAttribute(7, "class", "btn btn-secondary");
-				builder.AddAttribute(8, "onclick", EventCallback.Factory.Create(this, _ => 
+				builder.AddAttribute(8, "onclick", EventCallback.Factory.Create(this, _ =>
 					OnCloseButtonClicked(args.ModalButtons is ModalButtons.Ok or ModalButtons.OkCancel ? ModalResult.Cancel : ModalResult.No)));
 				builder.AddContent(9, args.ModalButtons is ModalButtons.OkCancel ? "Cancel" : "No");
 				builder.CloseElement();
