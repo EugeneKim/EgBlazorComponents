@@ -1,53 +1,43 @@
 ﻿@using EgBlazorComponents.Demo.Models
 @typeparam TItem where TItem : EditFormModalContent
 
-<EditForm Model="@ModalArgs.Data" OnValidSubmit="@HandleValidSubmit">
+<EditForm class="row g-3" Model="@ModalArgs.Data" OnValidSubmit="@HandleValidSubmit">
 	<DataAnnotationsValidator />
 
-	<p>
-		<label>
-			Identifier:
-			<InputText @bind-Value="ModalArgs.Data.Identifier" />
-		</label>
-	</p>
-	<p>
-		<label>
-			Description (optional):
-			<InputTextArea @bind-Value="ModalArgs.Data.Description" />
-		</label>
-	</p>
-	<p>
-		<label>
-			Primary Classification:
-			<InputSelect @bind-Value="ModalArgs.Data.Classification">
-				<option value="">Select classification ...</option>
-				<option value="Exploration">Exploration</option>
-				<option value="Diplomacy">Diplomacy</option>
-				<option value="Defense">Defense</option>
-			</InputSelect>
-		</label>
-	</p>
-	<p>
-		<label>
-			Maximum Accommodation:
-			<InputNumber @bind-Value="ModalArgs.Data.MaximumAccommodation" />
-		</label>
-	</p>
-	<p>
-	    <label>
-	        Engineering Approval:
-	        <InputCheckbox @bind-Value="ModalArgs.Data.IsValidatedDesign" />
-	    </label>
-	</p>
-	<p>
-	    <label>
-	        Production Date:
-	        <InputDate @bind-Value="ModalArgs.Data.ProductionDate" />
-	    </label>
-	</p>
-	
+	<div class="col-12">
+		<label class="form-label">Identifier</label>
+		<InputText class="form-control" @bind-Value="ModalArgs.Data.Identifier" />
+	</div>
+	<div class="col-12">
+		<label class="form-label">Description (optional)</label>
+		<InputTextArea class="form-control" @bind-Value="ModalArgs.Data.Description" />
+	</div>
+	<div class="col-6">
+		<label class="form-label">Primary Classification</label>	
+		<InputSelect class="form-control" @bind-Value="ModalArgs.Data.Classification">
+			<option value="">Select classification ...</option>
+			<option value="Exploration">Exploration</option>
+			<option value="Diplomacy">Diplomacy</option>
+			<option value="Defense">Defense</option>
+		</InputSelect>
+	</div>
+	<div class="col-6">
+		<label class="form-label">Maximum Accommodation</label>
+		<InputNumber class="form-control" @bind-Value="ModalArgs.Data.MaximumAccommodation" />
+	</div>
+	<div class="col-12">
+		<label class="form-label">Production Date</label>
+		<InputDate class="form-control"  @bind-Value="ModalArgs.Data.ProductionDate" />
+	</div>
+	<div class="col-12">
+		<InputCheckbox class="form-check-input" id="checkbox" @bind-Value="ModalArgs.Data.IsValidatedDesign" />
+		<label class="form-check-label" for="checkbox">Engineering Approval</label>
+	</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
-	<ValidationSummary />
+
+	<div class="col-12">
+		<ValidationSummary />
+	</div>
 </EditForm>
 
 @code {
