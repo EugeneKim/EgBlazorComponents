@@ -30,7 +30,7 @@
 				else
 				{
 					<li class="page-item">
-						<a class="page-link" href="#" @onclick="(() => OnPageButtonClickAsync(pageIndex))" @onclick:preventDefault>@pageIndex</a>
+						<a class="page-link" @onclick="(() => OnPageButtonClickAsync(pageIndex))" @onclick:preventDefault>@pageIndex</a>
 					</li>
 				}
 			}

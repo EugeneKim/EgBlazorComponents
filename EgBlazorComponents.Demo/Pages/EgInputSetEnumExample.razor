@@ -2,10 +2,16 @@
 @using EgBlazorComponents.Form
 @using EgBlazorComponents.Demo.Models
 
-<EditForm Model="@WordModel">
-	<EgInputSelectEnum @bind-Value="WordModel.Priority" class="custom-select" />
-</EditForm>
+<div>
+	EgInputSelectEnum component expects an enum type object as a parameter.
+</div>
+<div>
+	<EditForm Model="wordModel">
+		<EgInputSelectEnum @bind-Value="wordModel.Priority" class="custom-select" />
+	</EditForm>
+</div>
 
-@code {
-	public WordModel WordModel { get; set; } = new WordModel(Priority.High, "school");
+@code 
+{
+	private WordModel wordModel = new WordModel(Priority.High, "school");
 }

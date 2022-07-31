@@ -3,7 +3,7 @@
 @page "/Modal"
 
 <EgModal @ref=simpleModal ModalArgs="@simpleModalArgs" TItem="SimpleModalContent" />
-<div class="card">
+<div class="card m-1">
 	<div class="card-header">
 		Simple Modal
 	</div>
@@ -18,7 +18,7 @@
 </div>
 
 <EgModal @ref=editFormModal ModalArgs="@editFormModalArgs" TItem="EditFormModalContent" />
-<div class="card">
+<div class="card m-1">
 	<div class="card-header">
 		EditForm Modal
 	</div>
@@ -61,7 +61,15 @@
 				Name = "Thomas A. Anderson"
 			});
 
-		editFormModalContent = new EditFormModalContent();
+		editFormModalContent = new EditFormModalContent()
+			{
+				Identifier = "NCC-1701",
+				Description = "23rd century Federation Constitution-class star-ship operated by Starfleet",
+				Classification = "Exploration",
+				MaximumAccommodation = 150,
+				IsValidatedDesign = true,
+				ProductionDate = new DateTime(2245, 4, 11)
+			};
 	}
 
 	private async Task ShowSimpleModalAsync()

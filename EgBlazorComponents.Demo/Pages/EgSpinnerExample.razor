@@ -4,21 +4,16 @@
 @* Put the spinner on top so that it can cover all contents in the page. *@
 <EgSpinner @ref="spinner" />
 
-Message: @message
-<button class="btn btn-primary" @onclick="OnShowSpinnerButtonClickAsync">Show Spinner</button>
+<div>
+	Press the button below to show the spinner.
+</div>
+<div>
+	<button class="btn btn-primary" @onclick="OnShowSpinnerButtonClickAsync">Show Spinner</button>
+</div>
 
 @code
 {
 	private EgSpinner spinner;
-	private string message = string.Empty;
 
-	private async Task OnShowSpinnerButtonClickAsync()
-	{
-		await spinner.ShowAsync(async () =>
-		{
-			message = "You can now see the spinner.";
-			await Task.Delay(2000);
-			message = string.Empty;
-		});
-	}
+	private async Task OnShowSpinnerButtonClickAsync() => await spinner.ShowAsync(async () => await Task.Delay(2000));
 }
