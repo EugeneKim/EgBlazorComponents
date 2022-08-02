@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+     strategy:
+      matrix:
+        build-config: ['Debug', 'Release']
+        dotnet-version: ['6.0.x']
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: setup .NET ${{ matrix.dotnet-version }} CLI environment
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: build
+        run: dotnet build --configuration ${{ matrix.build-config }} --no-restore
