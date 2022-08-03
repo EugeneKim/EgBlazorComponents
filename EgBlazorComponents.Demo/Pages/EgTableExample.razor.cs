@@ -12,12 +12,9 @@ namespace EgBlazorComponents.Demo.Pages
 		[Inject] private WordsCollectionService WordCollectionService { get; set; }
 
 		public IReadOnlyList<WordModel> WordData { get; set; }
-
 		private int TotalWords { get; set; }
-
 		public string Message { get; set; }
-
-		private int PageSize { get; set; } = 10;
+		private static int PageSize => 10;
 
 		protected override async Task OnInitializedAsync() =>
 			(TotalWords, WordData) = await WordCollectionService.GetWordsAsync(1, PageSize);
@@ -28,13 +25,13 @@ namespace EgBlazorComponents.Demo.Pages
 		public async Task OnDeleteCommandButtonClickAsync(TableCommandButtonArgs args)
 		{
 			await Task.CompletedTask;
-			Message = $"Command: Delete {(args.Data as WordModel).Word}";
+			Message = $"Command: Delete {(args.Data as WordModel)!.Word}";
 		}
 
 		public async Task OnEditCommandButtonClickAsync(TableCommandButtonArgs args)
 		{
 			await Task.CompletedTask;
-			Message = $"Command: Edit {(args.Data as WordModel).Word}";
+			Message = $"Command: Edit {(args.Data as WordModel)!.Word}";
 		}
 	}
 }

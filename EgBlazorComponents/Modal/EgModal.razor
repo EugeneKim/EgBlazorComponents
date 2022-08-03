@@ -26,7 +26,7 @@
 
 @code
 {
-	[Parameter] public ModalArgs<TItem> ModalArgs { get; set; }
+	#region Fields
 
 	private EventCallback<ModalResult> OnCloseRequested;
 	private bool isVisible;
@@ -35,9 +35,26 @@
 	private RenderFragment footer;
 	private TaskCompletionSource<ModalResult> tcs;
 
-	public Task<ModalResult> ShowAsync<T>(string title, ModalArgs<TItem> args) where T: class
+	#endregion Fields
+
+	#region Properties
+
+	[Parameter] public ModalArgs<TItem> ModalArgs { get; set; }
+
+	#endregion Properties
+
+	#region Public Methods
+
+	/// <summary>
+	/// Show the modal.
+	/// </summary>
+	/// <typeparam name="T">Type of the argument data property</typeparam>
+	/// <param name="modalTitle">Modal title</param>
+	/// <param name="args">Argument instance</param>
+	/// <returns>Modal result</returns>
+	public Task<ModalResult> ShowAsync<T>(string modalTitle, ModalArgs<TItem> args) where T: class
 	{
-		this.title = title;
+		this.title = modalTitle;
 		ModalArgs = args;
 		OnCloseRequested = EventCallback.Factory.Create<ModalResult>(this, OnCloseButtonClicked);
 
@@ -81,9 +98,15 @@
 		return tcs.Task;
 	}
 
+	#endregion Public Methods
+
+	#region Private Methods
+
 	private void OnCloseButtonClicked(ModalResult modalResult)
 	{
 		tcs.TrySetResult(modalResult);
 		isVisible = false;
 	}
+
+	#endregion Private Methods
 }

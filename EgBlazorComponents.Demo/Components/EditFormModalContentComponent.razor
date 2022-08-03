@@ -40,7 +40,8 @@
 	</div>
 </EditForm>
 
-@code {
+@code
+{
 	[CascadingParameter] private ModalArgs<TItem> ModalArgs { get; set; }
 	[CascadingParameter] private EventCallback<ModalResult> OnCloseRequested { get; set; }
 

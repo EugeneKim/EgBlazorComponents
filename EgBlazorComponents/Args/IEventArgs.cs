@@ -1,6 +1,4 @@
 ﻿namespace EgBlazorComponents.Args
 {
-	public interface IEventArgs
-	{
-	}
+	public interface IEventArgs { }
 }

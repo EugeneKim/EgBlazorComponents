@@ -12,7 +12,7 @@
 	<EgColumn Field="Priority">
 		<Template>
 			@{
-				var priority = (context as WordModel).Priority;
+				var priority = (context as WordModel)!.Priority;
 
 				@if (priority == Priority.High)
 				{

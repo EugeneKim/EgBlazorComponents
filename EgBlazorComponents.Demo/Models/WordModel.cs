@@ -11,13 +11,13 @@ namespace EgBlazorComponents.Demo.Models
 
 		public override string ToString() => $"Priority: {Priority}, Word = {Word}";
 
-		public bool Equals(WordModel other) =>
-			other != null && Priority == other.Priority && Word == other.Word;
+		public bool Equals(WordModel other)
+			=> other != null && Priority == other.Priority && Word == other.Word;
 
-		public override bool Equals(object obj) =>
-			ReferenceEquals(this, obj) || obj is WordModel other && Equals(other);
+		public override bool Equals(object obj)
+			=> ReferenceEquals(this, obj) || obj is WordModel other && Equals(other);
 
-		public override int GetHashCode() =>
-			Priority.GetHashCode() + Word.GetHashCode();
+		public override int GetHashCode() 
+			=> Priority.GetHashCode() + Word.GetHashCode();
 	}
 }

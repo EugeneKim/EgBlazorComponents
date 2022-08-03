@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EgBlazorComponents.Demo.Services
 {
 	/// <summary>
-	/// Service consumed by a client for the <see cref="Word"/> objects.
+	/// Service consumed by a client for the <see cref="WordModel"/> objects.
 	/// </summary>
 	public class WordsCollectionService
 	{
@@ -55,7 +55,7 @@ namespace EgBlazorComponents.Demo.Services
 
 		public async Task DeleteWordAsync(WordModel word)
 		{
-			var found = words.Where(w => w == word).ToList();
+			var found = words.Where(w => w.Equals(word)).ToList();
 
 			if (found.Count == 1 && words.Remove(found.First()))
 				await Task.CompletedTask;
@@ -68,17 +68,14 @@ namespace EgBlazorComponents.Demo.Services
 				? words
 				: words.Where(w => w.Word.Contains(filter, StringComparison.OrdinalIgnoreCase));
 
-		private static void Shuffle(string[] array, Random random)
+		private static void Shuffle(IList<string> array, Random random)
 		{
-			var length = array.Length;
+			var length = array.Count;
 
 			for (var i = 0; i < length-1; i++)
 			{
 				var index = i + random.Next(length-i);
-				var temp = array[index];
-
-				array[index] = array[i];
-				array[i] = temp;
+				(array[index], array[i]) = (array[i], array[index]);
 			}
 		}
 	}

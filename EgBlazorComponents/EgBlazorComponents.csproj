@@ -15,12 +15,11 @@
     <PackageTags>EgBlazorComponents Blazor Components</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Description>A collection of Blazor custom components.
-This package is intended for educational purposes for my colleagues who are new to Blazor world.
-Therefore, I tried to NOT reuse or wrap any 3rd party dependencies.
-And I also tried to make the implementation simple as possible as I can.
-Feel free to download and modify the package source from GitHub for the projects for you or your team.
-The demo project included in the package source demonstrates how to use the components.</Description>
-    <PackageReleaseNotes>Added the EgInputSetEnum component.</PackageReleaseNotes>
+Those components do not use any 3rd party dependencies except for Bootstrap 5.
+Copyleft licensed. Feel free to download and modify them for your own. The demo project is included to see how to use them.</Description>
+    <PackageReleaseNotes>Added the EgModal component.
+Fixed the pagination highlight bug in the EgColumn.
+Upgraded for dotnet 6.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
