@@ -6,7 +6,7 @@
 	<CascadingValue Value="@ModalArgs">
 		<CascadingValue Value="@OnCloseRequested">
 			<div class="modal" tabindex="-1" data-bs-backdrop="static" style="display:block;">
-				<div class="modal-dialog">
+				<div class="modal-dialog @GetOptionalSize()">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title">@title</h5>
@@ -40,6 +40,7 @@
 	#region Properties
 
 	[Parameter] public ModalArgs<TItem> ModalArgs { get; set; }
+	[Parameter] public OptionalSize OptionalSize { get; set; }
 
 	#endregion Properties
 
@@ -107,6 +108,15 @@
 		tcs.TrySetResult(modalResult);
 		isVisible = false;
 	}
+
+	private string GetOptionalSize() => OptionalSize switch
+	{
+		OptionalSize.Small => "modal-sm",
+		OptionalSize.Large => "modal-lg",
+		OptionalSize.ExtraLarge => "modal-xl",
+		OptionalSize.Default => string.Empty,
+		_ => throw new ArgumentOutOfRangeException(nameof(OptionalSize))
+	};
 
 	#endregion Private Methods
 }
