@@ -1,0 +1,37 @@
+﻿@page "/InputDataListText"
+@using EgBlazorComponents.Form
+
+<EgInputDataListText class="form-control" @bind-Value="number" OnNewListItemsRequested="OnNewListItemsRequested"/>
+
+@code
+{
+	private string number;
+	private List<(string, string)> collocations;
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+
+		var adjectives = new List<string>
+		{
+			"adorable", "adventurous", "aggressive", "awful", "arrogant", "alive", "angry",
+			"bewildered", "bloody", "brave", "brainy", "beautiful",
+			"calm", "careful", "cautious", "charming", "cheerful", "clean", "clear", "clever", "cloudy", "clumsy", "colorful",
+			"dangerous", "dark", "dead", "defeated", "defiant", "delightful", "depressed", "determined", "different", "difficult", "disgusted",
+			"eager", "easy", "elated", "elegant", "embarrassed", "enchanting", "encouraging", "energetic", "enthusiastic",
+			"faithful", "famous", "fancy", "fantastic", "fierce", "filthy", "fine", "foolish", "fragile""
+		};
+	}
+
+	private IReadOnlyList<(string, string)> OnNewListItemsRequested(string number)
+	{
+		var newDataListItems = new List<(string, string)>();
+
+		dataListItems = newDataListItems;
+
+		foreach (var p in DbManager.GetPhrasalVerbs(phrasalVerb, SearchFilter.StartsWith).Take(100))
+			newDataListItems.Add((p.Verb, p.GetMeaningsOf(Language.English)[0].Sentence));
+
+		return newDataListItems;
+	}
+}
