@@ -1,37 +1,66 @@
 ﻿@page "/InputDataListText"
 @using EgBlazorComponents.Form
 
-<EgInputDataListText class="form-control" @bind-Value="number" OnNewListItemsRequested="OnNewListItemsRequested"/>
+<EditForm Model="this">
+	<p>Input the collocation you want to see in the text box below:</p>
+	<EgInputDataListText class="form-control" @bind-Value="Collocation" OnNewListItemsRequested="OnNewListItemsRequested"/>
+</EditForm>
 
 @code
 {
-	private string number;
-	private List<(string, string)> collocations;
+	private string Collocation;
+	private List<(string, string)> allCollocations;
 
 	protected override void OnInitialized()
 	{
 		base.OnInitialized();
 
-		var adjectives = new List<string>
+		var adjectives = new []
 		{
 			"adorable", "adventurous", "aggressive", "awful", "arrogant", "alive", "angry",
 			"bewildered", "bloody", "brave", "brainy", "beautiful",
 			"calm", "careful", "cautious", "charming", "cheerful", "clean", "clear", "clever", "cloudy", "clumsy", "colorful",
 			"dangerous", "dark", "dead", "defeated", "defiant", "delightful", "depressed", "determined", "different", "difficult", "disgusted",
 			"eager", "easy", "elated", "elegant", "embarrassed", "enchanting", "encouraging", "energetic", "enthusiastic",
-			"faithful", "famous", "fancy", "fantastic", "fierce", "filthy", "fine", "foolish", "fragile""
+			"faithful", "famous", "fancy", "fantastic", "fierce", "filthy", "fine", "foolish", "fragile",
+			"gifted", "glamorous", "gleaming", "glorious", "good", "gorgeous", "graceful", "grieving", "grotesque",
+			"healthy", "helpful", "helpless", "hilarious", "homeless", "homely", "horrible", "hungry",
+			"important", "impossible", "inexpensive", "innocent", "inquisitive", "itchy",
+			"jealous", "jittery", "jolly", "joyous",
+			"lazy", "light", "lively", "lonely", "long", "lovely", "lucky",
+			"magnificent", "misty", "modern", "motionless", "muddy", "mushy", "mysterious",
+			"nasty", "naughty", "nervous", "nice", "nutty",
+			"obedient", "obnoxious", "odd", "old-fashioned", "open", "outrageous", "outstanding",
+			"panicky", "perfect", "plain", "pleasant", "poised", "poor", "powerful", "precious", "prickly", "proud", "puzzled",
+			"quaint",
+			"real", "relieved", "repulsive", "rich",
+			"scary", "selfish", "shiny", "shy", "silly", "sleepy", "smiling", "smoggy", "sore", "sparkling", "splendid", "spotless",
+			"talented", "tame", "tasty", "tender", "tense", "terrible", "thankful", "thoughtful", "thoughtless",
+			"ugliest", "ugly", "uninterested", "unsightly", "unusual", "upset", "uptight",
+			"vast", "victorious", "vivacious",
+			"wandering", "weary", "wicked", "wide-eyed", "wild", "witty", "worried", "worrisome", "wrong",
+			"zany", "zealous"
 		};
+
+		var nouns = new []
+		{
+			"time", "person", "year", "way", "day", "thing", "man", "world", "life", "hand", "part", "child", "eye", "woman",
+			"place", "work", "week", "case", "point", "government", "company", "number", "group", "problem", "fact", "food", "engine",
+			"zoo", "school", "doctor", "student", "year", "month", "lily", "sun", "moon", "dog", "cat", "dream", "key",
+			"presentation", "behaviour", "quiz", "wine", "milk", "sky", "jam", "tiger", "zebra"
+		};
+
+		allCollocations = new List<(string, string)>();
+
+		var random = new Random();
+
+		for (var i = 0; i < 1000; i++)
+		{
+			var c = $"{adjectives[random.Next(adjectives.Length)]} {nouns[random.Next(nouns.Length)]}";
+			allCollocations.Add((c, $"This is the details of {c}."));
+		}
 	}
 
-	private IReadOnlyList<(string, string)> OnNewListItemsRequested(string number)
-	{
-		var newDataListItems = new List<(string, string)>();
-
-		dataListItems = newDataListItems;
-
-		foreach (var p in DbManager.GetPhrasalVerbs(phrasalVerb, SearchFilter.StartsWith).Take(100))
-			newDataListItems.Add((p.Verb, p.GetMeaningsOf(Language.English)[0].Sentence));
-
-		return newDataListItems;
-	}
+	private IReadOnlyList<(string, string)> OnNewListItemsRequested(string textInput)
+		=> allCollocations.Where(c => c.Item1.StartsWith(textInput, StringComparison.OrdinalIgnoreCase)).Select(c => (c.Item1, c.Item2)).ToList();
 }
