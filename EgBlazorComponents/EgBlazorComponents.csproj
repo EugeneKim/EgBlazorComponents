@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PackageId>EgBlazorComponents</PackageId>
-    <Version>0.0.3-alpha</Version>
+    <Version>0.0.4-alpha</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Eugene Kim</Authors>
     <Company>Eugene Kim</Company>
