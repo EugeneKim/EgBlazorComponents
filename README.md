@@ -16,6 +16,9 @@ The demo project is included to see how to use them.
 - Modal dialog\
 Please note that *I referred a lot to the parts [Blazored Modal](https://github.com/Blazored/Modal) is implemented for this component.*
 
+#### InputDataListText
+- Extended the HTML DataList element. This uses the debouncing timer internally to support lazy loading.
+
 #### InputSetEnum
 - Extended the built-in InputSet to support *enum* type.
 
